@@ -76,6 +76,8 @@
 "Advanced" = "Advanced";
 "LocalCachePath" = "Local Cache Path";
 "LocalCachePathDescription" = "Xcodes caches available Xcode versions and temporary downloads new versions to a directory";
+"InstallPath" = "Installation Path";
+"InstallPathDescription" = "The directory where Xcode versions will be/have been installed";
 "Change" = "Change";
 "Active/Select" = "Active/Select";
 

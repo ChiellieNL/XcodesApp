@@ -17,7 +17,16 @@ extension Path {
         return xcodesApplicationSupport/"available-xcodes.json"
     }
     
-    static var installDirectory: Path {
+    static var defaultInstallDirectory: Path {
         return Path.root/"Applications"
+    }
+    static var installDirectory: Path {
+        guard let savedInstallDirectory = Current.defaults.string(forKey: "installPath") else {
+            return defaultInstallDirectory
+        }
+        guard let path = Path(savedInstallDirectory) else {
+            return defaultInstallDirectory
+        }
+        return path
     }
 }

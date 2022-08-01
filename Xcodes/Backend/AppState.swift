@@ -21,7 +21,7 @@ class AppState: ObservableObject {
             }
             updateAllXcodes(
                 availableXcodes: newValue, 
-                installedXcodes: Current.files.installedXcodes(Path.installDirectory), 
+                installedXcodes: Current.files.installedXcodes(Path.installDirectory),
                 selectedXcodePath: selectedXcodePath
             )
         }
@@ -61,7 +61,13 @@ class AppState: ObservableObject {
             Current.defaults.set(localPath, forKey: "localPath")
         }
     }
-    
+
+    @Published var installPath = "" {
+        didSet {
+            Current.defaults.set(installPath, forKey: "installPath")
+        }
+    }
+
     @Published var unxipExperiment = false {
         didSet {
             Current.defaults.set(unxipExperiment, forKey: "unxipExperiment")
@@ -132,6 +138,7 @@ class AppState: ObservableObject {
     
     func setupDefaults() {
         localPath = Current.defaults.string(forKey: "localPath") ?? Path.defaultXcodesApplicationSupport.string
+        installPath = Current.defaults.string(forKey: "installPath") ?? Path.defaultInstallDirectory.string
         unxipExperiment = Current.defaults.bool(forKey: "unxipExperiment") ?? false
         createSymLinkOnSelect = Current.defaults.bool(forKey: "createSymLinkOnSelect") ?? false
         onSelectActionType = SelectedActionType(rawValue: Current.defaults.string(forKey: "onSelectActionType") ?? "none") ?? .none
